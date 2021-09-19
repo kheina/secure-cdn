@@ -32,8 +32,7 @@ async def home() :
 
 @app.get('{path:path}')
 async def all_routes(req: Request, path: str) :
-	if not await req.user.verify_scope(Scope.admin) :
-		raise Forbidden('in order to save costs, this function is only available to admins and is still in development.')
+	await req.user.verify_scope(Scope.admin)
 
 	response = genny(req.method, host + path.lstrip('/'), req.headers, await req.body())
 	headers, status = await response.__anext__()
