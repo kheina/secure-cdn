@@ -23,6 +23,13 @@ async def genny(method, url, headers={ }, body=None) :
 			yield data
 
 
+@app.get('/')
+async def home() :
+	return {
+		'description': 'this service serves data from the cdn by first authenticating the user and then streaming the response from the host.',
+	}
+
+
 @app.get('{path:path}')
 async def all_routes(req: Request, path: str) :
 	if not await req.user.verify_scope(Scope.admin) :
@@ -44,13 +51,6 @@ async def all_routes(req: Request, path: str) :
 			headers=headers,
 			status_code=status,
 		)
-
-
-@app.get('/')
-async def home() :
-	return {
-		'description': 'this service serves data from the cdn by first authenticating the user and then streaming the response from the host.',
-	}
 
 
 if __name__ == '__main__' :
