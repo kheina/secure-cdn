@@ -25,7 +25,7 @@ async def genny(method, url, headers={ }, body=None) :
 
 @app.get('{path:path}')
 async def all_routes(req: Request, path: str) :
-	if await req.user.verify_scope(Scope.admin) :
+	if not await req.user.verify_scope(Scope.admin) :
 		raise Forbidden('in order to save costs, this function is only available to admins and is still in development.')
 
 	response = genny(req.method, host + path.lstrip('/'), req.headers, await req.body())
