@@ -55,4 +55,4 @@ async def home() :
 
 if __name__ == '__main__' :
 	from uvicorn.main import run
-	run(app, host='0.0.0.0', port=3000)
+	run(app, host='0.0.0.0', port=5007)
