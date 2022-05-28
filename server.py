@@ -38,7 +38,7 @@ async def fetch_post(post_id: str) :
 		f'{posts_host}/v1/post/{post_id}',
 		timeout=ClientTimeout(timeout),
 		headers={
-			'authorization': 'bearer {internal_token}',
+			'authorization': 'Bearer {internal_token}',
 		},
 	) as response :
 		if response.status >= 400 :
